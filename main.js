@@ -7,7 +7,7 @@ const options = {
   },
 };
 
-fetch(
+const topRatedMoviesFectch = fetch(
   "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1",
   options
 )
@@ -17,7 +17,7 @@ fetch(
     const movieWrapper = document.querySelector(".top-rated-list");
 
     topRatedMovies.forEach((movie) => {
-      console.log(movie);
+      // console.log(movie);
       const id = movie.id;
       const title = movie.title;
       const overview = movie.overview;
@@ -37,6 +37,15 @@ fetch(
 
     movieWrapper.addEventListener("click", (e) => {
       alert(`id: ${e.target.closest("li").dataset.id}`);
+    });
+
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const searchItem = document.querySelector(".search-input").value;
+      const matchItem = topRatedMovies.filter(
+        (topRatedMovie) => topRatedMovie.title === searchItem
+      );
+      console.log(matchItem[0]);
     });
   })
   .catch((err) => console.error(err));
