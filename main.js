@@ -20,7 +20,6 @@ const topRatedMoviesFectch = fetch(
     topRatedMovies.forEach((movie) => {
       const id = movie.id;
       const title = movie.title;
-      const overview = movie.overview;
       const posterURI = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
       const voteAverage = movie.vote_average;
 
@@ -33,13 +32,34 @@ const topRatedMoviesFectch = fetch(
                           <h3>${title}</h3>
                           <span>${voteAverage}</span>
                         </div>
-                        <p>${overview}</p>
                       `;
       movieWrapper.append(movieLi);
     });
 
     movieWrapper.addEventListener("click", (e) => {
-      alert(`id: ${e.target.closest("li").dataset.id}`);
+      const targetId = e.target.closest("li").dataset.id;
+      const modalOverlay = document.querySelector(".modal-overlay");
+      const modalImg = document.querySelector(".modal img");
+      const modalTitle = document.querySelector(".modal-text h3");
+      const modalRate = document.querySelector(".modal-text span");
+      const modalOverview = document.querySelector(".modal-text p");
+      const body = document.querySelector("body");
+
+      const targetMovie = topRatedMovies.filter(
+        (movie) => movie.id === parseInt(targetId)
+      );
+      modalImg.setAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/original/${targetMovie[0].poster_path}`
+      );
+      modalImg.setAttribute("alt", `${targetMovie[0].title} 포스터`);
+      modalTitle.textContent = targetMovie[0].title;
+      modalRate.textContent = `ID ${targetMovie[0].id} | 평점 ${targetMovie[0].vote_average}`;
+      modalOverview.textContent =
+        targetMovie[0].overview || `요약 내용이 없습니다.`;
+      modalOverlay.style.display = "block";
+      body.classList.add("modal-active");
+      // alert(`id: ${e.target.closest("li").dataset.id}`);
     });
 
     searchForm.addEventListener("submit", (e) => {
@@ -52,30 +72,62 @@ const topRatedMoviesFectch = fetch(
         searchInput.focus();
       } else {
         const matchItem = topRatedMovies.filter(
-          (topRatedMovie) => topRatedMovie.title === searchText
+          (topRatedMovie) =>
+            topRatedMovie.title.toUpperCase() === searchText.toUpperCase()
         );
-        searchInput.value = "";
-
         if (!matchItem[0]) {
           alert("일치하는 영화가 없습니다.");
+          searchInput.value = "";
           searchInput.focus();
           return;
+        } else {
+          const modalImg = document.querySelector(".modal img");
+          const modalTitle = document.querySelector(".modal-text h3");
+          const modalRate = document.querySelector(".modal-text span");
+          const modalOverview = document.querySelector(".modal-text p");
+          const body = document.querySelector("body");
+
+          modalImg.setAttribute(
+            "src",
+            `https://image.tmdb.org/t/p/original/${matchItem[0].poster_path}`
+          );
+          modalImg.setAttribute("alt", `${matchItem[0].title} 포스터`);
+          modalTitle.textContent = matchItem[0].title;
+          modalRate.textContent = `ID ${matchItem[0].id} | 평점 ${matchItem[0].vote_average}`;
+          modalOverview.textContent =
+            matchItem[0].overview || `요약 내용이 없습니다.`;
+          document.querySelector(".modal-overlay").style.display = "block";
+          body.classList.add("modal-active");
         }
-        return console.log(matchItem[0]);
       }
     });
   })
   .catch((err) => console.error(err));
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".btn-close-modal").addEventListener("click", () => {
+    document.querySelector(".modal-overlay").style.display = "none";
+    document.querySelector("body").classList.remove("modal-active");
+  });
+
   if (document.querySelector(".topRatedSwiper")) {
     var topRatedSwiper = new Swiper(".topRatedSwiper", {
-      slidesPerView: 6,
+      slidesPerView: 2,
       spaceBetween: 30,
       slidesPerGroup: 6,
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        1300: {
+          slidesPerView: 6,
+          spaceBetween: 30,
+        },
       },
     });
   }

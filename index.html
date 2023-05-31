@@ -8,6 +8,11 @@
 
     <link
       rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="style.css" />
@@ -37,8 +42,8 @@
     </section>
     <main>
       <div class="inner">
-        <h2>TOP RATED MOVIES</h2>
         <div class="swiper topRatedSwiper">
+          <h2>TOP RATED MOVIES</h2>
           <ul class="swiper-wrapper top-rated-list">
             <!-- <li
               class="swiper-slide"
@@ -57,9 +62,6 @@
                 <h3>제목</h3>
                 <span>8.5</span>
               </div>
-              <p>
-                요약..
-              </p>
             </li> -->
           </ul>
           <div class="swiper-button-next"></div>
@@ -67,5 +69,23 @@
         </div>
       </div>
     </main>
+    <!-- 모달 -->
+    <div class="modal-overlay">
+      <div class="modal">
+        <button class="btn-close-modal">
+          <span class="material-symbols-outlined"> close </span>
+        </button>
+        <div>
+          <img src="/" alt="" />
+        </div>
+        <div class="modal-text">
+          <h3>제목</h3>
+          <div>
+            <p>요약</p>
+          </div>
+          <span>평점</span>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
