@@ -6,30 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies</title>
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
+    ></script>
     <script src="main.js"></script>
   </head>
   <body>
-    <section>
-      <h1>영화 콜렉션</h1>
-      <form id="searchForm">
-        <input type="text" class="search-input" />
-        <button type="submit" class="search-btn">검색</button>
-      </form>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>MOVIEW COLLECTION</h1>
+        <form id="searchForm">
+          <input type="text" class="search-input" />
+          <button type="submit" class="search-btn">
+            <span class="material-symbols-outlined"> search </span>
+          </button>
+        </form>
+      </div>
+      <div class="hero-img"></div>
     </section>
-    <section>
-      <h2>TOP RATED MOVIES</h2>
-      <ul class="top-rated-list">
-        <!-- <li data-id="id">
-        <img
-          src="https://image.tmdb.org/t/p/original/oyyUcGwLX7LTFS1pQbLrQpyzIyt.jpg"
-          alt="title poster"
-        />
-        <h3>title</h3>
-        <span>rate</span>
-        <p>description</p>
-      </li> -->
-      </ul>
-    </section>
+    <main>
+      <div class="inner">
+        <h2>TOP RATED MOVIES</h2>
+        <div class="swiper topRatedSwiper">
+          <ul class="swiper-wrapper top-rated-list">
+            <!-- <li
+              class="swiper-slide"
+              data-id="122"
+            >
+              <div
+                class="poster-img"
+                style="
+                  background: center / cover
+                    url('https://image.tmdb.org/t/p/original//tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg')
+                    no-repeat;
+                "
+                title="제목 포스터 이미지"
+              ></div>
+              <div class="main-info">
+                <h3>제목</h3>
+                <span>8.5</span>
+              </div>
+              <p>
+                요약..
+              </p>
+            </li> -->
+          </ul>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

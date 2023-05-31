@@ -1,5 +1,14 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   margin: 0;
+  font-family: "Pretendard-Regular";
 }
 h1,
 h2,
@@ -7,19 +16,99 @@ h3,
 h4 {
   margin: 0;
 }
+h2 {
+  margin-bottom: 40px;
+  color: #fff;
+  font-size: 2rem;
+}
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-
-.top-rated-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.top-rated-list li {
-  cursor: pointer;
-}
-.top-rated-list img {
+/* hero */
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   width: 100%;
+  height: 450px;
+  background: #000;
+}
+.hero-text {
+  padding-left: 60px;
+}
+.hero h1 {
+  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  font-weight: bold;
+  background: -webkit-linear-gradient(45deg, #2c73d2, #00ff95 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero form {
+  position: relative;
+  width: 75%;
+}
+.search-input {
+  width: 100%;
+  height: 50px;
+  padding: 0.1rem 3rem 0.1rem 1.5rem;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 1.2rem;
+  border: double 1px transparent;
+  border-radius: 25px;
+  background-image: linear-gradient(#000, #000),
+    linear-gradient(324deg, #00dbad, #2c73d2);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.search-input:focus {
+  outline: none;
+}
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  transform: translateY(-50%);
+}
+.search-btn span {
+  font-size: 30px;
+  color: #00dbad;
+}
+.hero-img {
+  width: 60%;
+  height: 100%;
+  background: right / cover
+    url(https://images.unsplash.com/photo-1585951237318-9ea5e175b891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80)
+    no-repeat #000;
+  box-shadow: 20px 11px 50px 20px black inset, -20px -16px 50px 20px black inset;
+  filter: blur(1px);
+}
+/* main */
+main {
+  background: #111;
+}
+main .inner {
+  padding: 100px 60px;
+}
+.top-rated-list .poster-img {
+  padding-top: 140%;
+}
+.top-rated-list .main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.top-rated-list .main-info h3 {
+  color: #fff;
+}
+.top-rated-list .main-info span {
+  color: #fff;
 }
