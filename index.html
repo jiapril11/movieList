@@ -25,7 +25,7 @@
       defer
       src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
     ></script>
-    <script src="main.js"></script>
+    <script defer src="./js/main.js" type="module"></script>
   </head>
   <body>
     <section class="hero">
@@ -42,9 +42,114 @@
     </section>
     <main>
       <div class="inner">
-        <div class="swiper topRatedSwiper">
-          <h2>TOP RATED MOVIES</h2>
+        <!-- searched movie -->
+        <div class="swiper movie-list-swiper searchedMovieSwiper">
+          <h2>SEARCH RESULTS</h2>
+          <ul class="swiper-wrapper searched-movie-list">
+            <!-- <li
+              class="swiper-slide"
+              data-id="122"
+            >
+              <div
+                class="poster-img"
+                style="
+                  background: center / cover
+                    url('https://image.tmdb.org/t/p/original//tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg')
+                    no-repeat;
+                "
+                title="제목 포스터 이미지"
+              ></div>
+              <div class="main-info">
+                <h3>제목</h3>
+                <span>8.5</span>
+              </div>
+            </li> -->
+          </ul>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <!-- top rated -->
+        <div class="swiper movie-list-swiper topRatedSwiper">
+          <h2>TOP RATED</h2>
           <ul class="swiper-wrapper top-rated-list">
+            <!-- <li
+              class="swiper-slide"
+              data-id="122"
+            >
+              <div
+                class="poster-img"
+                style="
+                  background: center / cover
+                    url('https://image.tmdb.org/t/p/original//tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg')
+                    no-repeat;
+                "
+                title="제목 포스터 이미지"
+              ></div>
+              <div class="main-info">
+                <h3>제목</h3>
+                <span>8.5</span>
+              </div>
+            </li> -->
+          </ul>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <!-- popular -->
+        <div class="swiper movie-list-swiper popularSwiper">
+          <h2>POPULAR</h2>
+          <ul class="swiper-wrapper popular-list">
+            <!-- <li
+              class="swiper-slide"
+              data-id="122"
+            >
+              <div
+                class="poster-img"
+                style="
+                  background: center / cover
+                    url('https://image.tmdb.org/t/p/original//tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg')
+                    no-repeat;
+                "
+                title="제목 포스터 이미지"
+              ></div>
+              <div class="main-info">
+                <h3>제목</h3>
+                <span>8.5</span>
+              </div>
+            </li> -->
+          </ul>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <!-- now-playing -->
+        <div class="swiper movie-list-swiper nowPlayingSwiper">
+          <h2>NOW PLAYING</h2>
+          <ul class="swiper-wrapper now-playing-list">
+            <!-- <li
+              class="swiper-slide"
+              data-id="122"
+            >
+              <div
+                class="poster-img"
+                style="
+                  background: center / cover
+                    url('https://image.tmdb.org/t/p/original//tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg')
+                    no-repeat;
+                "
+                title="제목 포스터 이미지"
+              ></div>
+              <div class="main-info">
+                <h3>제목</h3>
+                <span>8.5</span>
+              </div>
+            </li> -->
+          </ul>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <!-- up-coming -->
+        <div class="swiper movie-list-swiper upcomingSwiper">
+          <h2>UPCOMING</h2>
+          <ul class="swiper-wrapper upcoming-list">
             <!-- <li
               class="swiper-slide"
               data-id="122"
@@ -69,6 +174,7 @@
         </div>
       </div>
     </main>
+
     <!-- 모달 -->
     <div class="modal-overlay">
       <div class="modal">
