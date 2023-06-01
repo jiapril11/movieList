@@ -37,29 +37,12 @@ const topRatedMoviesFectch = fetch(
     });
 
     movieWrapper.addEventListener("click", (e) => {
+      e.preventDefault();
       const targetId = e.target.closest("li").dataset.id;
-      const modalOverlay = document.querySelector(".modal-overlay");
-      const modalImg = document.querySelector(".modal img");
-      const modalTitle = document.querySelector(".modal-text h3");
-      const modalRate = document.querySelector(".modal-text span");
-      const modalOverview = document.querySelector(".modal-text p");
-      const body = document.querySelector("body");
-
       const targetMovie = topRatedMovies.filter(
         (movie) => movie.id === parseInt(targetId)
       );
-      modalImg.setAttribute(
-        "src",
-        `https://image.tmdb.org/t/p/original/${targetMovie[0].poster_path}`
-      );
-      modalImg.setAttribute("alt", `${targetMovie[0].title} 포스터`);
-      modalTitle.textContent = targetMovie[0].title;
-      modalRate.textContent = `ID ${targetMovie[0].id} | 평점 ${targetMovie[0].vote_average}`;
-      modalOverview.textContent =
-        targetMovie[0].overview || `요약 내용이 없습니다.`;
-      modalOverlay.style.display = "block";
-      body.classList.add("modal-active");
-      // alert(`id: ${e.target.closest("li").dataset.id}`);
+      openModal(targetMovie);
     });
 
     searchForm.addEventListener("submit", (e) => {
@@ -81,23 +64,7 @@ const topRatedMoviesFectch = fetch(
           searchInput.focus();
           return;
         } else {
-          const modalImg = document.querySelector(".modal img");
-          const modalTitle = document.querySelector(".modal-text h3");
-          const modalRate = document.querySelector(".modal-text span");
-          const modalOverview = document.querySelector(".modal-text p");
-          const body = document.querySelector("body");
-
-          modalImg.setAttribute(
-            "src",
-            `https://image.tmdb.org/t/p/original/${matchItem[0].poster_path}`
-          );
-          modalImg.setAttribute("alt", `${matchItem[0].title} 포스터`);
-          modalTitle.textContent = matchItem[0].title;
-          modalRate.textContent = `ID ${matchItem[0].id} | 평점 ${matchItem[0].vote_average}`;
-          modalOverview.textContent =
-            matchItem[0].overview || `요약 내용이 없습니다.`;
-          document.querySelector(".modal-overlay").style.display = "block";
-          body.classList.add("modal-active");
+          openModal(matchItem);
         }
       }
     });
@@ -105,13 +72,11 @@ const topRatedMoviesFectch = fetch(
   .catch((err) => console.error(err));
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".btn-close-modal").addEventListener("click", () => {
-    document.querySelector(".modal-overlay").style.display = "none";
-    document.querySelector("body").classList.remove("modal-active");
-  });
+  closeModal();
 
+  // swiper: top rated movies
   if (document.querySelector(".topRatedSwiper")) {
-    var topRatedSwiper = new Swiper(".topRatedSwiper", {
+    let topRatedSwiper = new Swiper(".topRatedSwiper", {
       slidesPerView: 2,
       spaceBetween: 30,
       slidesPerGroup: 6,
@@ -132,3 +97,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+function openModal(data) {
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const modalImg = document.querySelector(".modal img");
+  const modalTitle = document.querySelector(".modal-text h3");
+  const modalRate = document.querySelector(".modal-text span");
+  const modalOverview = document.querySelector(".modal-text p");
+  const body = document.querySelector("body");
+
+  modalImg.setAttribute(
+    "src",
+    `https://image.tmdb.org/t/p/original/${data[0].poster_path}`
+  );
+  modalImg.setAttribute("alt", `${data[0].title} 포스터`);
+  modalTitle.textContent = data[0].title;
+  modalRate.textContent = `ID ${data[0].id} | 평점 ${data[0].vote_average}`;
+  modalOverview.textContent = data[0].overview || `요약 내용이 없습니다.`;
+  modalOverlay.style.display = "block";
+  body.classList.add("modal-active");
+}
+
+// 모달닫기
+function closeModal() {
+  document.querySelector(".btn-close-modal").addEventListener("click", () => {
+    document.querySelector(".modal-overlay").style.display = "none";
+    document.querySelector("body").classList.remove("modal-active");
+  });
+}
