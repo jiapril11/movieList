@@ -1,32 +1,31 @@
 import { getMovies, searchMovie } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // input focus
   document.querySelector(".search-input").focus();
 
-  // swiper: top rated movies
+  // 영화 분류별 셋팅
+  loadMoives("top_rated", ".top-rated-list", lang);
+  loadMoives("popular", ".popular-list", lang);
+  loadMoives("now_playing", ".now-playing-list", lang);
+  loadMoives("upcoming", ".upcoming-list", lang);
+
+  // swiper: 영화 분류별 셋팅
   if (document.querySelector(".searchedMovieSwiper")) {
     let searchedMovieSwiper = new Swiper(
       ".searchedMovieSwiper",
       mainSwiperSetting
     );
   }
-
-  // swiper: top rated movies
   if (document.querySelector(".topRatedSwiper")) {
     let topRatedSwiper = new Swiper(".topRatedSwiper", mainSwiperSetting);
   }
-
-  // swiper: poplur movies
   if (document.querySelector(".popularSwiper")) {
     let popularSwiper = new Swiper(".popularSwiper", mainSwiperSetting);
   }
-
-  // swiper: now playing movies
   if (document.querySelector(".nowPlayingSwiper")) {
     let nowPlayingSwiper = new Swiper(".nowPlayingSwiper", mainSwiperSetting);
   }
-
-  // swiper: upcoming movies
   if (document.querySelector(".upcomingSwiper")) {
     let upComingSwiper = new Swiper(".upcomingSwiper", mainSwiperSetting);
   }
@@ -84,23 +83,33 @@ searchForm.addEventListener("submit", async (e) => {
   }
 });
 
-// 영화 분류별 셋팅
-// top rated
-const topRatedMovies = await getMovies("top_rated", "ko-KR");
-listingMovies(".top-rated-list", topRatedMovies);
-openModalMovie(".top-rated-list", topRatedMovies);
-// popular
-const popularMovies = await getMovies("popular", "ko-KR");
-listingMovies(".popular-list", popularMovies);
-openModalMovie(".popular-list", popularMovies);
-// now-playing
-const nowPlayingMovies = await getMovies("now_playing", "ko-KR");
-listingMovies(".now-playing-list", nowPlayingMovies);
-openModalMovie(".now-playing-list", nowPlayingMovies);
-// upcoming
-const upcomingMovies = await getMovies("upcoming", "ko-KR");
-listingMovies(".upcoming-list", upcomingMovies);
-openModalMovie(".upcoming-list", upcomingMovies);
+// 영화 API 언어 변경
+let lang = "ko-KR";
+const langBtn = document.querySelector(".lang-btn");
+langBtn.addEventListener("click", () => {
+  if (lang === "en-US") {
+    lang = "ko-KR";
+    langBtn.innerText = "EN";
+    loadMoives("top_rated", ".top-rated-list", lang);
+    loadMoives("popular", ".popular-list", lang);
+    loadMoives("now_playing", ".now-playing-list", lang);
+    loadMoives("upcoming", ".upcoming-list", lang);
+  } else {
+    lang = "en-US";
+    langBtn.innerText = "KO";
+    loadMoives("top_rated", ".top-rated-list", lang);
+    loadMoives("popular", ".popular-list", lang);
+    loadMoives("now_playing", ".now-playing-list", lang);
+    loadMoives("upcoming", ".upcoming-list", lang);
+  }
+});
+
+// api result 가져와서 리스팅/모달 함수 적용
+async function loadMoives(cagegory, wrapper, lang) {
+  const movieResult = await getMovies(cagegory, lang);
+  listingMovies(wrapper, movieResult);
+  openModalMovie(wrapper, movieResult);
+}
 
 // 영화 리스팅
 function listingMovies(wrapperClass, movieArr) {

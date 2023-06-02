@@ -97,6 +97,29 @@ img {
   box-shadow: 20px 11px 50px 20px black inset, -20px -16px 50px 20px black inset;
   filter: blur(1px);
 }
+/* 언어 버튼 */
+.lang-btn {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  background: #00ff95;
+  z-index: 9;
+  border: 0;
+  color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  transition: 0.5s;
+}
+.lang-btn:hover {
+  transform: scale(1.1);
+}
 /* main */
 main {
   background: #111;
