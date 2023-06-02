@@ -1,6 +1,8 @@
 import { getMovies, searchMovie } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".search-input").focus();
+
   // swiper: top rated movies
   if (document.querySelector(".searchedMovieSwiper")) {
     let searchedMovieSwiper = new Swiper(
