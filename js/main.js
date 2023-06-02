@@ -70,10 +70,15 @@ searchForm.addEventListener("submit", async (e) => {
       alert("검색어를 입력해주세요.");
       searchInput.focus();
       return;
+    } else {
+      if (searchedMovies.length) {
+        searchedMovieSection.style.display = "block";
+        listingMovies(".searched-movie-list", searchedMovies);
+        openModalMovie(".searched-movie-list", searchedMovies);
+      } else {
+        alert("검색된 영화가 없습니다.");
+      }
     }
-    searchedMovieSection.style.display = "block";
-    listingMovies(".searched-movie-list", searchedMovies);
-    openModalMovie(".searched-movie-list", searchedMovies);
   } catch (err) {
     console.error(err);
   }
