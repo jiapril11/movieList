@@ -103,7 +103,9 @@ function listingMovies(wrapperClass, movieArr) {
   movieArr.forEach((movie) => {
     const id = movie.id;
     const title = movie.title;
-    const posterURI = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+    const posterURI = movie.poster_path
+      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+      : `./imgs/no_img.png`;
     const voteAverage = movie.vote_average;
 
     const movieLi = document.createElement("li");
@@ -138,20 +140,27 @@ function openModalMovie(wrapperClass, movieArr) {
 function openModal(data) {
   const modalOverlay = document.querySelector(".modal-overlay");
   const modalImg = document.querySelector(".modal img");
+  const modalTextBox = document.querySelector(".modal-text");
   const modalTitle = document.querySelector(".modal-text h3");
   const modalRate = document.querySelector(".modal-text span");
   const modalOverview = document.querySelector(".modal-text p");
   const body = document.querySelector("body");
 
-  modalImg.setAttribute(
-    "src",
-    `https://image.tmdb.org/t/p/original/${data[0].poster_path}`
-  );
-  modalImg.setAttribute("alt", `${data[0].title} 포스터`);
+  if (data[0].poster_path) {
+    modalImg.setAttribute(
+      "src",
+      `https://image.tmdb.org/t/p/original/${data[0].poster_path}`
+    );
+    modalImg.setAttribute("alt", `${data[0].title} 포스터`);
+  } else {
+    modalImg.setAttribute("src", `./imgs/no_img.png`);
+    modalImg.setAttribute("alt", `${data[0].title} 대체 이미지`);
+  }
   modalTitle.textContent = data[0].title;
   modalRate.textContent = `ID ${data[0].id} | 평점 ${data[0].vote_average}`;
   modalOverview.textContent = data[0].overview || `요약 내용이 없습니다.`;
   modalOverlay.style.display = "block";
+  modalTextBox.style.height = `${modalImg.clientHeight}px`;
   body.classList.add("modal-active");
 
   closeModal();

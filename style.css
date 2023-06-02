@@ -204,13 +204,15 @@ body.modal-active {
 }
 .modal-text {
   padding: 1.5rem;
+  box-sizing: border-box;
 }
 .modal-text h3 {
   margin-bottom: 1rem;
-  padding-bottom: 1rem;
+  padding: 0 1rem 1rem 0;
   font-size: 1.2rem;
   font-weight: 700;
   border-bottom: 1px solid #e3e3e3;
+  word-break: keep-all;
 }
 .modal-text span {
   position: absolute;
@@ -220,7 +222,7 @@ body.modal-active {
   color: #777;
 }
 .modal-text > div {
-  height: 80%;
+  height: calc(100% - 100px);
   overflow-y: scroll;
 }
 .modal-text p {
