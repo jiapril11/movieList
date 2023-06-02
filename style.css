@@ -231,3 +231,21 @@ body.modal-active {
   line-height: 1.5;
   word-break: keep-all;
 }
+
+@media (max-width: 992px) {
+  .modal {
+    width: 70%;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal {
+    width: 90%;
+  }
+  .modal-text h3 {
+    font-size: 1rem;
+  }
+  .modal-text p {
+    font-size: 0.875rem;
+  }
+}
