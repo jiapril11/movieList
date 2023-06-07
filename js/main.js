@@ -63,7 +63,7 @@ searchForm.addEventListener("submit", async (e) => {
     const searchText = searchInput.value;
     const searchedMovies = await searchMovie(searchText, "ko-KR");
     const title = document.querySelector(".searchedMovieSwiper h2");
-    title.textContent = `SEARCH RESULTS: ${searchText}`;
+    title.textContent = `SEARCH RESULTS: ${searchText}(${searchedMovies.length})`;
 
     if (searchText.length <= 0) {
       alert("검색어를 입력해주세요.");
@@ -105,8 +105,8 @@ langBtn.addEventListener("click", () => {
 });
 
 // api result 가져와서 리스팅/모달 함수 적용
-async function loadMoives(cagegory, wrapper, lang) {
-  const movieResult = await getMovies(cagegory, lang);
+async function loadMoives(category, wrapper, lang) {
+  const movieResult = await getMovies(category, lang);
   listingMovies(wrapper, movieResult);
   openModalMovie(wrapper, movieResult);
 }
