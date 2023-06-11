@@ -153,8 +153,18 @@ main .inner {
   color: #fff;
   font-weight: 500;
 }
-.movie-list-swiper .main-info span {
+.movie-list-swiper .main-info p {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3px;
   color: #808080;
+}
+.movie-list-swiper .main-info span {
+  margin-top: 3px;
+}
+.movie-list-swiper .main-info .fa-star {
+  font-size: 0.8rem;
 }
 .swiper-button-next {
   top: 17px;
@@ -246,7 +256,7 @@ body.modal-active {
 }
 .modal-text > div {
   height: calc(100% - 100px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .modal-text p {
   padding: 1rem 0;

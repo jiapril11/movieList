@@ -1,7 +1,6 @@
 import { getMovies, searchMovie } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // input focus
   document.querySelector(".search-input").focus();
 
   // 영화 분류별 셋팅
@@ -131,7 +130,7 @@ function listingMovies(wrapperClass, movieArr) {
                           <div class="poster-img" style="background: center / cover url('${posterURI}') no-repeat;" title="${title} 포스터"></div>
                           <div class="main-info">
                             <h3>${title}</h3>
-                            <span>${voteAverage}</span>
+                            <p title="평점"><i class="fa-solid fa-star"></i> <span>${voteAverage}</span></p>
                           </div>
                         `;
     movieWrapper.append(movieLi);
